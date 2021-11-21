@@ -6,9 +6,9 @@ export function Navegador(props){
 
     return (
         <nav className="navegador">
-            <Link linkTexto="Link 1 "></Link>
-            <Link linkTexto="Link 2 "></Link>
-            <Link linkTexto="Link 3 "></Link>
+            <Link linkTexto="Matriculas"></Link>
+            <Link linkTexto="Disciplinas"></Link>
+            <Link linkTexto="Horarios"></Link>
         </nav>
     )
 }
