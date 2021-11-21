@@ -1,4 +1,5 @@
 import { Navegador } from "../../commom/Navegador/Navegador";
+import './PaginaPrincipal.css';
 
 function Conteudo(){
     
@@ -34,18 +35,47 @@ function Conteudo(){
                         )
     );
 
-    return(<div>
-                <ul>
-                    {lis}
-                </ul>
+    return(<div className="conteudo-galeria">
+                <div className="card">
+                    <h3 className="titulo-card">LMS</h3>
+                    <span className="codigo-card">QXD123</span>
+                </div>
+                <div className="card">
+                    <h3 className="titulo-card">LMS</h3>
+                    <span className="codigo-card">QXD123</span>
+                </div>
+                <div className="card">
+                    <h3 className="titulo-card">LMS</h3>
+                    <span className="codigo-card">QXD123</span>
+                </div>
+                <div className="card">
+                    <h3 className="titulo-card">LMS</h3>
+                    <span className="codigo-card">QXD123</span>
+                </div>
+                <div className="card">
+                    <h3 className="titulo-card">LMS</h3>
+                    <span className="codigo-card">QXD123</span>
+                </div>
+                <div className="card">
+                    <h3 className="titulo-card">LMS</h3>
+                    <span className="codigo-card">QXD123</span>
+                </div>
+                <div className="card">
+                    <h3 className="titulo-card">LMS</h3>
+                    <span className="codigo-card">QXD123</span>
+                </div>
+                <div className="card">
+                    <h3 className="titulo-card">LMS</h3>
+                    <span className="codigo-card">QXD123</span>
+                </div>
            </div>
     )
 }
 
 function Cabecalho({paginaAtual}){
-    return(<header>
-                <h1>Matricula UFC QXD</h1>
-                <span>Você está na {paginaAtual}</span>
+    return(<header className="cabecalho">
+                <h1 className="logo">Matricula UFC QXD</h1>
+                <span className="pagina-atual">Você está na {paginaAtual}</span>
             </header>
     )
 }
