@@ -1,14 +1,21 @@
-function Card({ nome, codigo, disponivel }) {
+import history from "../../../history";
+
+function Card({ disciplina }) {
 
     let nomeClasse = "card";
-    if (disponivel === false) {
+    if (disciplina.disponivel === false) {
         nomeClasse += " fundo-vermelho";
     }
 
+    function foiClicado() {
+        console.log("clik")
+        history.push("/disciplinas" + disciplina.id);
+    }
+
     return (
-        <div className={nomeClasse}>
-            <h3 className="titulo-card">{nome}</h3>
-            <span className="codigo-card">{codigo}</span>
+        <div className={nomeClasse} onClick={foiClicado}>
+            <h3 className="titulo-card">{disciplina.nome}</h3>
+            <span className="codigo-card">{disciplina.codigo}</span>
         </div>
     )
 }
@@ -17,21 +24,25 @@ export function Conteudo() {
 
     let disciplinas = [
         {
+            id: "123",
             nome: "LMS",
             codigo: "QXD253",
             disponivel: false,
         },
         {
+            id: "234",
             nome: "PIW",
             codigo: "QXD5435",
             disponivel: true,
         },
         {
+            id: "345",
             nome: "SOC",
             codigo: "QXD2323",
             disponivel: false,
         },
         {
+            id: "456",
             nome: "POO",
             codigo: "QXD4546",
             disponivel: true,
@@ -40,9 +51,7 @@ export function Conteudo() {
 
     let cards = disciplinas.map((disciplina) => (
         <Card
-            nome={disciplina.nome}
-            codigo={disciplina.codigo}
-            disponivel={disciplina.disponivel}>
+            disciplina={disciplina}>
         </Card>
     )
     )
