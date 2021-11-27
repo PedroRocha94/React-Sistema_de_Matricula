@@ -13,12 +13,17 @@ export const AuthContext = createContext(null);
 
 function App() {
 
-  const [auth, setAuth] = useState({ token: null, nome: null });
+  const [auth, setAuth] = useState({ token: localStorage.getItem("token"), nome: localStorage.getItem("nome") });
 
+  const setAuthLS = (newAuth) => {
+    setAuth(newAuth);
+    localStorage.setItem("token", newAuth.token);
+    localStorage.setItem("nome", newAuth.nome);
+  }
 
   return (
 
-    <AuthContext.Provider value={{ auth: auth, setAuth: setAuth }}>
+    <AuthContext.Provider value={{ auth: auth, setAuth: setAuthLS }}>
       <BrowserRouter history={history}>
         <Routes>
           <Route

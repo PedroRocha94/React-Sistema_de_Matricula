@@ -1,19 +1,40 @@
 import { Navegador } from "../../commom/Navegador/Navegador";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { inserirMatricula, listarMatriculas } from "../../../api/matriculasAPI";
+import { AuthContext } from "../../../App";
+import { listarDisciplinas } from "../../../api/disciplinasAPI";
+
 
 function FormularioMatricula({ onSubmeter }) {
 
+    const [disciplinas, setDisciplinas] = useState([]);
+    const { auth } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
     const submeter = (matricula) => { onSubmeter(matricula) };
 
+    useEffect(() => {
+        listarDisciplinas(auth.token).then(
+            (response) => {
+                setDisciplinas(response.data);
+            }
+        ).catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    }, [])
+
     return (
         <form onSubmit={handleSubmit(submeter)}>
-            Nome: <input name="nome" type="text" {...register('nome', { required: true })} /> <br />
             Disciplina: <select name="disciplina" id=""  {...register('disciplina', { required: true })}>
-                <option value="LMS">LMS</option>
-                <option value="PIW">PIW</option>
-                <option value="IHC">IHC</option>
+                {disciplinas.map(
+                    (disciplina) => (
+                        <option value={disciplina.id} name="disciplina">
+                            {disciplina.nome}
+                        </option>
+                    )
+                )}
             </select><br />
             <button>Matricular</button>
         </form>
@@ -21,30 +42,47 @@ function FormularioMatricula({ onSubmeter }) {
 }
 
 function ListarMatriculas({ matriculas }) {
+
+    let lista = matriculas.map((matricula) => (<li>{matricula.aluno.nome} - {matricula.disciplina.nome}</li>));
     return (
         <ul>
-            {matriculas.map((matricula) => (<li>{matricula.nome} - {matricula.disciplina}</li>))}
+            {lista}
         </ul >
     )
 }
 
 export function PaginaListarMatricula() {
 
-    const [matriculas, setMatriculas] = useState(
-        [
-            {
-                nome: "Victor",
-                disciplina: "PIW",
-            },
-            {
-                nome: "Maria",
-                disciplina: "LMS",
-            },
-        ]
-    );
+    const [matriculas, setMatriculas] = useState([]);
+
+    const { auth } = useContext(AuthContext);
+
+    const atualizarMatriculas = () => {
+        listarMatriculas(auth.token).then(
+            (response) => {
+                setMatriculas(response.data);
+            }
+        ).catch(
+            (error) => {
+                console.log(error);
+            }
+        )
+    }
+
+    useEffect(() => {
+        atualizarMatriculas();
+    }, [])
 
     const adicionarMatricula = (matricula) => {
-        setMatriculas([...matriculas, matricula])
+        inserirMatricula(auth.token, matricula).then(
+            (response) => {
+                atualizarMatriculas();
+            }
+        ).catch(
+            (error) => {
+                console.log(error);
+            }
+        )
 
     };
     return (
