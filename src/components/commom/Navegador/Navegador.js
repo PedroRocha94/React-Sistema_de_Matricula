@@ -15,6 +15,12 @@ export function Navegador() {
             <NavLink className="link-navegador" to={"/matriculas/" + id}>
                 Ir para detalhes
             </NavLink>
+            <NavLink className="link-navegador" to={"/cadastro/"} style={{ "margin-left": "auto" }}>
+                Cadastrar-se
+            </NavLink>
+            <NavLink className="link-navegador" to={"/login/"}>
+                Login
+            </NavLink>
         </nav>
     )
 }

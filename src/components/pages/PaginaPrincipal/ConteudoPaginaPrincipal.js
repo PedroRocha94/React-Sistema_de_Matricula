@@ -8,8 +8,8 @@ function Card({ disciplina }) {
     }
 
     function foiClicado() {
-        console.log("clik")
-        history.push("/disciplinas" + disciplina.id);
+        console.log("clik");
+        history.push('/disciplinas' + disciplina.id);
     }
 
     return (

@@ -1,22 +1,16 @@
 import { Navegador } from "../../commom/Navegador/Navegador";
 import { Conteudo } from "./ConteudoPaginaPrincipal";
 import './PaginaPrincipal.css';
+import { Cabecalho } from "../../commom/Cabecalho/Cabecalho"
 
 
-function Cabecalho({paginaAtual}){
-    return(<header className="cabecalho">
-                <h1 className="logo">Matricula UFC QXD</h1>
-                <span className="pagina-atual">Você está na {paginaAtual}</span>
-            </header>
-    )
-}
 
-export function PaginaPrincipal(){
+export function PaginaPrincipal() {
 
     return (<div>
-                <Cabecalho paginaAtual="página principal"></Cabecalho>
-                <Navegador></Navegador>
-                <Conteudo></Conteudo>
-            </div>
-            )
+        <Cabecalho paginaAtual="página principal"></Cabecalho>
+        <Navegador></Navegador>
+        <Conteudo></Conteudo>
+    </div>
+    )
 }
